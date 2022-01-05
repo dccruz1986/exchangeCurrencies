@@ -1,0 +1,39 @@
+<form *ngIf="formExchange" [formGroup]="formExchange">
+    <div class="form-elements" fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-form-field appearance="legacy">
+            <mat-label>Currencies</mat-label>
+            <mat-select matNativeControl required formControlName="source">
+                <mat-option *ngFor="let currency of currenciesList | currenciesName" [value]="currency.value.id">
+                    {{currency.value.id}} {{currency.value.currencyName}} </mat-option>
+
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy" floatLabel="always" class="amount">
+            <mat-label>Amount</mat-label>
+            <input matInput type="number" formControlName="amount" min="1" class="example-right-align" placeholder="1">
+            <span matPrefix>{{sourceSymbol}}</span>
+            <span matSuffix>.00</span>
+        </mat-form-field>
+    </div>
+    <div class="form-elements swap" fxLayout="row" fxLayoutAlign="space-between center">
+        
+        <button mat-raised-button color="primary" (click)="swap()">Swap</button>
+        <span> 1 {{formExchange.value.source}} ≈ {{singleValue}} {{formExchange.value.target}}</span>
+    </div>
+    <div class="form-elements result" fxLayout="row" fxLayoutAlign="space-between center">
+
+        <mat-form-field appearance="legacy">
+            <mat-label>Currencies</mat-label>
+            <mat-select matNativeControl required formControlName="target">
+                <mat-option *ngFor="let currency of currenciesList | currenciesName" [value]="currency.value.id">
+                    {{currency.value.id}} {{currency.value.currencyName}} </mat-option>
+
+            </mat-select>
+        </mat-form-field>
+        <span>{{calculatedValue}} {{formExchange.value.target}}</span>
+    </div>
+
+
+
+</form>

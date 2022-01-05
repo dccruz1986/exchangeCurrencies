@@ -1,0 +1,10 @@
+{
+    "/api": {
+      "target": "https://free.currconv.com/api/v7",
+      "secure": true,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      }
+    }
+  }
